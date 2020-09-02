@@ -1,3 +1,5 @@
+import json
+
 """
 This Python implementation is hypothesized to be very inefficient and 
 impractical! Feel free to suggest a much simpler implementation.
@@ -58,22 +60,12 @@ def json_stringify_scientist_info(id):
 
 
 def json_stringify_scientists_info(scientists):
-    try:
-        json = "{ scientists: {\n"
-        i = 0
-        for s_id, s in scientists.items():
-            json += "    '%s':" % s_id
-            lines = json_stringify_scientist_info(s_id).split("\n")
-            for j, line in enumerate(lines):
-                json += "    " + line
-                if j < len(lines) - 1 and i < len(scientists):
-                    json += "\n"
-                else:
-                    json += ",\n"
-            i += 1
-        json += "}}"
-    except Exception as e:
-        raise e
+    d = {}
+    data = {}
 
+    d['scientists'] = data
 
-    return json
+    for scientist_id in scientists.keys():
+        data[scientist_id] = get_scientist_info(scientist_id)
+
+    return json.dumps(d, indent=4)
