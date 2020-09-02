@@ -43,18 +43,9 @@ def get_scientist_info(id):
 
 
 def json_stringify_scientist_info(id):
-    scientist_json_template = """{
-    'id': '%s',
-    'name': '%s',
-    'specialization': '%s',
-    'known_for': '%s',
-}"""
-    return scientist_json_template % (
-        get_scientist_info(id).get("id"),
-        get_scientist_info(id).get("name"),
-        get_scientist_info(id).get("specialization"),
-        get_scientist_info(id).get("known_for"),
-    )
+    return json.dumps(get_scientist_info(id), indent=4)
+
+
 # 2. Given an object containing info on multiple scientists, a function
 #    that dumps a JSON serialization of that information.
 
