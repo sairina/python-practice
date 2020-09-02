@@ -33,11 +33,18 @@ scientists = {
 
 
 def get_scientist_info(id):
+    keys = ['id', 'name', 'specialization', 'known_for']
+
     for scientist_id, scientist_info in scientists.items():
-        if scientist_info["id"] == id:
+        if scientist_info['id'] == id:
+            for key in keys:
+                if key not in scientist_info:
+                    scientist_info[key] = 'None'
             return scientist_info
         else:
             pass
+
+
 # 1. Given a scientist's `id`, a function that returns a JSON serialization
 #    of the information we have on that particular scientist.
 
